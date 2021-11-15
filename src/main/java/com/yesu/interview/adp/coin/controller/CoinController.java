@@ -33,30 +33,11 @@ public class CoinController {
     }
 
     @PostMapping
-    public ResponseEntity<String> addMoreCoins(@RequestBody CountRequest countRequest) {
+    public ResponseEntity<Object> addMoreCoins(@RequestBody CountRequest countRequest) {
         log.info("in addMoreCoins of CoinController");
-        if(isNumeric(countRequest.getCount())){
-            return ResponseEntity.ok("Successfully added coins:"+coinService.addMoreCoins(countRequest.getCount()));
-        }else{
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please provide valid count to get more coins!!");
-        }
+        return ResponseEntity.ok("Successfully added coins:"+coinService.addMoreCoins(countRequest.getCount()));
     }
 
-    /*
-       *
-        This method is used to validate user input. User inputs other than number is will throw an error.
-       *
-       */
-    public static boolean isNumeric(String strNum) {
-        if (strNum == null) {
-            return false;
-        }
-        try {
-            double d = Double.parseDouble(strNum);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        return true;
-    }
+
 
 }

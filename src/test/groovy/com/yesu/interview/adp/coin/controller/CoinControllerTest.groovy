@@ -2,6 +2,7 @@ package com.yesu.interview.adp.coin.controller
 
 import com.yesu.interview.adp.coin.CoinServiceApplication
 import com.yesu.interview.adp.coin.model.CoinResponse
+import com.yesu.interview.adp.coin.model.CountRequest
 import com.yesu.interview.adp.coin.service.CoinService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -29,6 +30,21 @@ class CoinControllerTest extends Specification{
 
         then: "400 BadRequest is thrown"
         response.getStatusCode() == 400
+    }
+
+    def "addMoreCoins | Return 404 bad request response | Negative"() {
+
+        CountRequest countRequest = new CountRequest()
+        countRequest.setCount("qwerty")
+
+        given: "Mock CoinsService"
+        coinService.addMoreCoins(*_) >> new CoinResponse()
+
+        when: "call to addMoreCoins is made"
+        def response = given().port(port).post(countRequest.getCount())
+
+        then: "404 BadRequest is thrown"
+        response.getStatusCode() == 404
     }
 
 }

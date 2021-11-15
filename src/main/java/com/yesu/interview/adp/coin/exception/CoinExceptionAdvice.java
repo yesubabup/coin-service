@@ -35,4 +35,14 @@ public class CoinExceptionAdvice extends ResponseEntityExceptionHandler {
         body.put("errorMessage", exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(value
+            = { NumberFormatException.class})
+    protected ResponseEntity<Object> handleNumberFormatException(
+            NumberFormatException exception) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("errorMessage", "Please provide valid count to get more coins!!");
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
 }

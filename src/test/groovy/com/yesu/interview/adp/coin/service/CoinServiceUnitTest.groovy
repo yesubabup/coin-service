@@ -68,4 +68,16 @@ class CoinServiceUnitTest extends Specification{
         thrown(InsufficientCoinsException)
     }
 
+    def "addMoreCoins | Fourth - Add MoreCoins for \$100 bill| Positive"() {
+        given: "count"
+
+        def count = "100"
+
+        when: "service is invoked"
+        def coinCount = service.addMoreCoins(count)
+
+         then: "Successfully added coins:100"
+         properties.getCoinsMap().get(String.valueOf("0.25")) == 100
+    }
+
 }

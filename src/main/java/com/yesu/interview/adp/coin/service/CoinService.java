@@ -21,7 +21,6 @@ public class CoinService {
 
     private final CoinProperties coinProperties;
 
-    // static double coins1[] = coinsMap.keySet().
     public CoinResponse getMinCoins(String bill) {
         log.info("in getMinCoins of CoinService");
 
@@ -97,8 +96,12 @@ public class CoinService {
         return null;
     }
 
+
     public String addMoreCoins(String count) {
-        coinProperties.getCoinsMap().replaceAll((k,v)->v=Integer.valueOf(count));
+        log.info("in addMoreCoins of CoinService");
+        coinProperties.getCoinsMap().replaceAll((k, v) -> v = Integer.valueOf(count));
         return count;
     }
+
+
 }
