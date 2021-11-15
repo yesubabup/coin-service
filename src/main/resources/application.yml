@@ -1,0 +1,11 @@
+server:
+  port: 9191
+
+coin:
+  properties:
+    coins: 0.01, 0.05, 0.10, 0.25
+    coins-map:
+      0.01: 100
+      0.05: 100
+      0.1: 100
+      0.25: 100
